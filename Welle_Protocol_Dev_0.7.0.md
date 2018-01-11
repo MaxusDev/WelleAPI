@@ -10,33 +10,9 @@
 
 
 
-## 1. Message Flowchart
+## 1. Message Seque
 
-
-
-```sequence
-Note left of HOST: GET
-HOST->WELLE: GET Request
-WELLE->HOST:  GET Response with status and data
-Note left of HOST: SET
-HOST->WELLE: SET Request
-WELLE->HOST:  SET Response with status
-Note left of HOST: DATAFLOW CONFIG
-HOST->WELLE: DATAFLOW CONFIG Request
-WELLE->HOST:  DATAFLOW CONFIG Response with status
-Note left of HOST: DATAFLOW START
-HOST->WELLE: DATAFLOW START Request
-WELLE->HOST: DATAFLOW START Response with status and data
-WELLE->HOST: DATAFLOW Response continuously
-Note left of HOST: DATAFLOW STOP
-HOST->WELLE: DATAFLOW STOP Request
-WELLE->HOST:  DATAFLOW STOP Response with status
-Note left of HOST: SYSCMD
-HOST->WELLE: SYSCMD Request
-WELLE->HOST:  SYSCMD Response with status
-Note left of HOST: Notification
-WELLE->HOST:  Notification Response 
-```
+![MessageSequence.jpeg](https://github.com/MaxusDev/WelleAPI/blob/master/image/MessageSequence.jpeg)
 
 
 
@@ -598,12 +574,12 @@ Once BLE is connected you do not need to specify  output data type, since BLE ca
 
 
 
-> **Data Response**:  `0x2123` `FFDC` `23` `FF55` 
+> **Data Response**:  `0x2121` `FFDC` `21` `FF55` 
 
 
-| Header |    X Coor    |  #   |    Y Coor    |
-| :----: | :----------: | :--: | :----------: |
-|  '!#'  | 2bytes int16 |  #   | 2bytes int16 |
+| Header  |    X Coor    |  !   |    Y Coor    |
+| :-----: | :----------: | :--: | :----------: |
+| ' ! ! ' | 2bytes int16 |  !   | 2bytes int16 |
 
 ---
 ## Recommended Tools
