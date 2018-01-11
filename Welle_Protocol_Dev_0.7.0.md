@@ -5,8 +5,6 @@
 ***
 ### 1. Message Flowchart
 
-
-
 ```sequence
 Note left of HOST: GET
 HOST->WELLE: GET Request
@@ -33,8 +31,9 @@ WELLE->HOST:  Notification Response
 
 
 
-
 ---
+
+
 
 ###  2. Welle Message
 
