@@ -9,7 +9,7 @@
       * [2. Welle Message](#2-welle-message)
          * [2.1 Structure of Message](#21-structure-of-message)
               * [2.1.1  Request Message Structure](#211-request-message-structure)
-              * [2.2.2 Response Message Structure](#222-response-message-structure)
+              * [2.1.2 Response Message Structure](#212-response-message-structure)
          * [2.2 Message Field Parse](#22-message-field-parse)
             * [2.2.1 Message Header](#221-message-header)
             * [2.2.2 Message Length](#222-message-length)
