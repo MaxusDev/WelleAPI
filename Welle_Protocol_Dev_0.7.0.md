@@ -4,6 +4,9 @@
 
 ***
 ### 1. Message Flowchart
+
+
+
 ```sequence
 Note left of HOST: GET
 HOST->WELLE: GET Request
@@ -27,7 +30,12 @@ WELLE->HOST:  SYSCMD Response with status
 Note left of HOST: Notification
 WELLE->HOST:  Notification Response 
 ```
-***
+
+
+
+
+---
+
 ###  2. Welle Message
 
 As we can see from the above flow chart, welle messages are divided into two types, ***Request*** and ***Response***.
