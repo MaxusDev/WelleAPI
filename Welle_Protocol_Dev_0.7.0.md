@@ -310,8 +310,11 @@ By default welle will not output any data unless DataFlow START cmd is received.
 | '######' |   6    | wDATAFLOW | wSTOP | None |
 
 
-##### 2.3.3 ==Dataflow Response Message== (envelop 怎么回事)
+##### 2.3.3 Dataflow Response Message
 The  Body of the response message are consists of 2 bytes, the data type is int16.
+
+
+
 |  Header  | Length |      Type      |                  Param                   | Status  | Body |
 | :------: | :----: | :------------: | :--------------------------------------: | :-----: | :--: |
 | '######' | 2bytes | wDATAFLOW_RESP | wRAW \|wPEAK_RAW\| wPEAK_FILTERED\|wPOSITION_FILTERED\|wPOSITION_FILTERED\|wENVELOP | wSUCCES | Vary |
@@ -336,6 +339,8 @@ Data Type Format:(**Please Check Param Flag in the Following Order**)
 You may want to recalibrate welle if it doesn't output smooth data or doesn't work well in recognizing gesture. Note that welle need a relatively big clean surface for better performance. Green LED will blink 3 times if recal succeeds. Or it will be stucked in Blue blink. Transfer welle to a more clean surface and the recal procedure will continue and Green LED blinks. 
 
 `0x232323232323` `0006` `4001` `0008` 
+
+
 
 |  Header  | Length |  Type   | Param  | Body |
 | :------: | :----: | :-----: | :----: | :--: |
@@ -390,6 +395,8 @@ Before we can get any gesture notification message, a SET CMD is need to trigger
 
 `0x232323232323` `0x000A` `0x2001` `0x0021` `0x3f800000`
 
+
+
 |  Header  | Length | Type |      Param      |   Body    |
 | :------: | :----: | :--: | :-------------: | :-------: |
 | '######' |   10   | SET  | wGESTURE_RESULT | GestureOn |
@@ -402,6 +409,8 @@ Before we can get any gesture notification message, a SET CMD is need to trigger
 
 `0x232323232323` `0x000C` `0x5001` `0x0002` `0x0000` `0x0003` `0xFF01`
 
+
+
 |  Header  | Length |     Type      |  Param   | Status  | Body                            |
 | :------: | :----: | :-----------: | :------: | :-----: | ------------------------------- |
 | '######' |   12   | wNotification | wGESTURE | wSUCCES | wUP_DOWN \| wLED_1(current LED) |
@@ -411,6 +420,8 @@ Before we can get any gesture notification message, a SET CMD is need to trigger
 - **Battery Status Notification**
 
 `0x232323232323` `0x000A` `0x5001` `0x0203` `0x0000` `0x0164`
+
+
 
 |  Header  | Length |     Type      |  Param   | Status  | Body                |
 | :------: | :----: | :-----------: | :------: | :-----: | ------------------- |
@@ -435,10 +446,16 @@ You can also recalibrate the system if you think welle is not working well.
   configure dataflow to output POSITION_FILTERED coordinate via USB.
 
 > **Request**: `0x232323232323` `0006` `3001` `4010`
+
+
 |  Header  | Length |   Type    |             Param             | Body |
 | :------: | :----: | :-------: | :---------------------------: | :--: |
 | '######' |   6    | wDATAFLOW | wCONFIG \| wPOSITION_FILTERED | None |
+
+
 > **Response**: `0x232323232323` `0008` `3002` `4010` `0000`
+
+
 |  Header  | Length |      Type      |             Param              | Status  | Body |
 | :------: | :----: | :------------: | :----------------------------: | :-----: | :--: |
 | '######' |   8    | wDATAFLOW_RESP | wCONFIG  \| wPOSITION_FILTERED | wSUCCES | None |
@@ -446,11 +463,17 @@ You can also recalibrate the system if you think welle is not working well.
 - **Dataflow Start**
 
 > **Request**: `0x232323232323` `0006` `3001` `1000` 
+
+
 |  Header  | Length |   Type    | Param  | Body |
 | :------: | :----: | :-------: | :----: | :--: |
 | '######' |   6    | wDATAFLOW | wSTART | None |
 
+
+
 > **Response**:  `0x232323232323` `000E` `3002` `1210` `0000` `FFDC` `FF55` `0023` 
+
+
 |  Header  | Length |      Type      |            Param             | Status  |        Body        |
 | :------: | :----: | :------------: | :--------------------------: | :-----: | :----------------: |
 | '######' |   14   | wDATAFLOW_RESP | wSTART \| wPOSITION_FILTERED | wSUCCES | coordinates[x,y,z] |
@@ -466,11 +489,17 @@ In this case, (`FFDC` `FF55` `0023`) is (x y z) .
 A Good practice is to stop dataflow when your program exits. This make sure Welle won't send dataflow continuously even if host is not ready to receive data. 
 
 > **Request**: `0x232323232323` `0006` `3001` `2000`
+
+
 |  Header  | Length |   Type    | Param | Body |
 | :------: | :----: | :-------: | :---: | :--: |
 | '######' |   6    | wDATAFLOW | wSTOP | None |
 
+
+
 > **Response**: `0x232323232323` `0008` `3002` `2000` `0000`
+
+
 |  Header  | Length |      Type      | Param | Status  | Body |
 | :------: | :----: | :------------: | :---: | :-----: | :--: |
 | '######' |   8    | wDATAFLOW_RESP | wSTOP | wSUCCES | None |
@@ -479,11 +508,17 @@ A Good practice is to stop dataflow when your program exits. This make sure Well
 
 > **Request**: `0x232323232323` `0006` `4001` `0008` 
 
+
+
 |  Header  | Length |  Type   | Param  | Body |
 | :------: | :----: | :-----: | :----: | :--: |
 | '######' |   6    | wSYSCMD | wRECAL | None |
 
+
+
 > **Response**: `0x232323232323` `0008` `4002` `0008` `0000`
+
+
 
 |  Header  | Length |  Type   | Param  | Status  | Body |
 | :------: | :----: | :-----: | :----: | :-----: | :--: |
@@ -527,17 +562,27 @@ Once BLE is connected you do not need to specify  output data type, since BLE ca
 
 **Dataflow Start**
 > **Request**: `0x232323232323` `0006` `3001` `1000` 
+
+
 |  Header  | Length |   Type    | Param  | Body |
 | :------: | :----: | :-------: | :----: | :--: |
 | '######' |   6    | wDATAFLOW | wSTART | None |
 
+
+
 > **Dataflow Start Response**: `0x232323232323` `0008` `3002` `1001` `0000` 
+
+
 |  Header  | Length |      Type      |            Param             | Status  | Body |
 | :------: | :----: | :------------: | :--------------------------: | :-----: | :--: |
 | '######' | 2bytes | wDATAFLOW_RESP | wSTART \| wPOSITION_FILTERED | wSUCCES | None |
 
 
+
+
 > **Data Response**:  `0x2123` `FFDC` `23` `FF55` 
+
+
 | Header |    X Coor    |  #   |    Y Coor    |
 | :----: | :----------: | :--: | :----------: |
 |  '!#'  | 2bytes int16 |  #   | 2bytes int16 |
