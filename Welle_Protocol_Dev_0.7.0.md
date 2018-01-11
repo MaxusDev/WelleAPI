@@ -1,9 +1,18 @@
-## Welle_Protocol_Dev_0.7.0
+# Welle_Protocol_Dev_0.7.0
+
+
 
 [TOC]
 
-***
-### 1. Message Flowchart
+
+
+---
+
+
+
+## 1. Message Flowchart
+
+
 
 ```sequence
 Note left of HOST: GET
@@ -35,7 +44,7 @@ WELLE->HOST:  Notification Response
 
 
 
-###  2. Welle Message
+##  2. Welle Message
 
 As we can see from the above flow chart, welle messages are divided into two types, ***Request*** and ***Response***.
 
@@ -62,7 +71,7 @@ There are seven types of ***Response*** that host can make:
 
 
 
-#### 2.1 Structure of Message
+### 2.1 Structure of Message
 
 ##### Request Message Structure
 
@@ -78,17 +87,17 @@ There are seven types of ***Response*** that host can make:
 
 
 
-#### 2.2 Message Field Parse
+### 2.2 Message Field Parse
 
-##### 2.2.1 Message Header
+#### 2.2.1 Message Header
 
 - All messages start with '######' regardless of request or response data
 
-##### 2.2.2 Message Length
+#### 2.2.2 Message Length
 
 - Total message length in bytes excludes message header
 
-##### 2.2.3 Message Type
+#### 2.2.3 Message Type
 
 -  The message type in  Request and Response should be in its corresponding pair. Cooreponding field defined as follow
 ```C
@@ -110,7 +119,7 @@ enum MSG_TYPE {
 };
 ```
 
-##### 2.2.4 Message Param
+#### 2.2.4 Message Param
 
 Different type of message has different parameter set.
 
@@ -209,7 +218,7 @@ enum NOTIFICATION_PARA {
 
 
 
-##### 2.2.5 Message Status
+#### 2.2.5 Message Status
 Only contained in Response and Notification message，indicating the status of the prior request
 ```C
 enum WELLE_STATUS{
@@ -230,11 +239,11 @@ enum WELLE_STATUS{
 
 
 
-#### 2.3 Message Example
+### 2.3 Message Example
 
 All data presented will be in HEX view.
 
-##### 2.3.1 GET/SET Req/Resp Message
+#### 2.3.1 GET/SET Req/Resp Message
 
 - Get device info message
 
@@ -258,6 +267,8 @@ Make sure you handle this reversed bytes correctly.
 |  Header  | Length |   Type    |    Param     |  Status  |                   Body                   |
 | :------: | :----: | :-------: | :----------: | :------: | :--------------------------------------: |
 | '######' |   22   | wGET_RESP | wDEVICE_INFO | wSUCCESS | UUID(4bytes) \| Firmware_version(4bytes) \| Battery_info(2bytes) \| cur_control(2bytes) \|  shortcuts(2bytes) |
+
+
 The body field contains 16 bytes in total. 
 
 `UUID` :  Device ID, in this case, `0x004D004B`
@@ -272,7 +283,7 @@ The body field contains 16 bytes in total.
 
 
 
-##### 2.3.2 Dataflow Request Message 
+#### 2.3.2 Dataflow Request Message 
 
 Welle can output several types of data, such as, raw echo signal, peak of raw echo, raw position (calculated coordinates without smoothing), filtered position, (coordinates with smoothing), the echo signal envelop. By default, welle output all the above data when connected to usb host, while only filtered position is output when connected to BLE for its speed limitation.
 
@@ -317,7 +328,7 @@ By default welle will not output any data unless DataFlow START cmd is received.
 | '######' |   6    | wDATAFLOW | wSTOP | None |
 
 
-##### 2.3.3 Dataflow Response Message
+#### 2.3.3 Dataflow Response Message
 The  Body of the response message are consists of 2 bytes, the data type is int16.
 
 
@@ -339,7 +350,7 @@ Data Type Format:(**Please Check Param Flag in the Following Order**)
 
 
 
-##### 2.3.4 SYSTEM Message
+#### 2.3.4 SYSTEM Message
 
 - **Recal CMD**
 
@@ -371,7 +382,7 @@ wRESTART = 0x0004,
 
 
 
-##### 2.3.5 NOTIFICATION Message
+#### 2.3.5 NOTIFICATION Message
 
 Notification message is **asynchronous message** initiated by Welle once a certain conditions are met.
 For example: 
@@ -440,7 +451,7 @@ Before we can get any gesture notification message, a SET CMD is need to trigger
 
 
 
-### 3. How to get data from Welle
+## 3. How to get data from Welle
 
 Welle provide many type of data for user to play with. 
 
@@ -537,7 +548,7 @@ A Good practice is to stop dataflow when your program exits. This make sure Well
 
 
 
-### 4. Welle with BLE
+## 4. Welle with BLE
 Welle supports BLE data transfer, however due to the speed limitation of BLE, only a few of the command work on BLE mode.
 
 #### Welle BLE info
@@ -595,7 +606,7 @@ Once BLE is connected you do not need to specify  output data type, since BLE ca
 |  '!#'  | 2bytes int16 |  #   | 2bytes int16 |
 
 ---
-### Recommended Tools
+## Recommended Tools
 **Serial Tools**
 - Nodejs: serialport module
 - Python: pyserial module
@@ -607,7 +618,7 @@ Once BLE is connected you do not need to specify  output data type, since BLE ca
 - Nodejs: noble module
 - Python: pybluez module
 
-### Contact
+## Contact
 Email: developer@maxustech.com tom.zheng@maxustech.com
 
 
