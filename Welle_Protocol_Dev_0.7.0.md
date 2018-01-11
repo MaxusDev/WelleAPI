@@ -4,15 +4,34 @@
 
 [TOC]
 
-
+ * [Welle_Protocol_Dev_0.7.0](#welle_protocol_dev_070)
+      * [1. Message Sequence](#1-message-sequence)
+      * [2. Welle Message](#2-welle-message)
+         * [2.1 Structure of Message](#21-structure-of-message)
+         * [2.2 Message Field Parse](#22-message-field-parse)
+            * [2.2.1 Message Header](#221-message-header)
+            * [2.2.2 Message Length](#222-message-length)
+            * [2.2.3 Message Type](#223-message-type)
+            * [2.2.4 Message Param](#224-message-param)
+            * [2.2.5 Message Status](#225-message-status)
+         * [2.3 Message Example](#23-message-example)
+            * [2.3.1 GET/SET Req/Resp Message](#231-getset-reqresp-message)
+            * [2.3.2 Dataflow Request Message](#232-dataflow-request-message)
+            * [2.3.3 Dataflow Response Message](#233-dataflow-response-message)
+            * [2.3.4 SYSTEM Message](#234-system-message)
+            * [2.3.5 NOTIFICATION Message](#235-notification-message)
+      * [3. How to get data from Welle](#3-how-to-get-data-from-welle)
+      * [4. Welle with BLE](#4-welle-with-ble)
+      * [Recommended Tools](#recommended-tools)
+      * [Contact](#contact)
 
 ---
 
 
 
-## 1. Message Seque
+## 1. Message Sequence
 
-![MessageSequence.jpeg](https://github.com/MaxusDev/WelleAPI/blob/master/image/MessageSequence.jpeg)
+![MessageSequence.jpeg](https://github.com/MaxusDev/WelleAPI/blob/master/image/MessageSequence.jpg)
 
 
 
@@ -49,13 +68,13 @@ There are seven types of ***Response*** that host can make:
 
 ### 2.1 Structure of Message
 
-##### Request Message Structure
+#### Request Message Structure
 
 |     Header      | Length |  Type  | Param  | Body |
 | :-------------: | :----: | :----: | :----: | :--: |
 | '######' 6bytes | 2bytes | 2bytes | 2bytes | Vary |
 
-##### Response Message Structure
+#### Response Message Structure
 
 |     Header     | Length |  Type  | Param  | Status | Body |
 | :------------: | :----: | :----: | :----: | :----: | :--: |
@@ -317,12 +336,12 @@ Data Type Format:(**Please Check Param Flag in the Following Order**)
 
 | DATA TYPE          | FORMAT | LENGTH            | Notes                                    |
 | ------------------ | ------ | ----------------- | ---------------------------------------- |
-| wRAW               | uint16 | 2 channels * 1360 | 2 channel's raw signal, each has 1360 points value range [0~4095] |
-| wENVELOP           | int16  | 2 channels * 600  | 2 channel's signal envelop, each has 600 points |
 | wPEAK_RAW          | int16  | 2                 | 2 channels' raw echo position            |
 | wPEAK_FILTERED     | int16  | 2                 | 2 channels' filtered echo position       |
 | wPOSITION_RAW      | int16  | 3                 | raw target position[x,y,z(currently unused)] in mm |
 | wPOSITION_FILTERED | int16  | 3                 | iltered target position[x,y,z(currently unused)] in mm |
+| wENVELOP           | int16  | 2 channels * 600  | 2 channel's signal envelop, each has 600 points. We ignore the first 200 point sof the raw signal, and compute the envelop of data points 201~ 800 |
+| wRAW               | uint16 | 2 channels * 1360 | 2 channel's raw signal, each has 1360 points value range [0~4095] |
 
 
 
@@ -595,7 +614,7 @@ Once BLE is connected you do not need to specify  output data type, since BLE ca
 - Python: pybluez module
 
 ## Contact
-Email: developer@maxustech.com tom.zheng@maxustech.com
+Email: developer@maxustech.com
 
 
 
