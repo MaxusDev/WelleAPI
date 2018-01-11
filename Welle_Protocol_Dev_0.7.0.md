@@ -72,13 +72,13 @@ There are seven types of ***Response*** that host can make:
 
 ### 2.1 Structure of Message
 
-#### Request Message Structure
+#### 2.1.1 Request Message Structure
 
 |     Header      | Length |  Type  | Param  | Body |
 | :-------------: | :----: | :----: | :----: | :--: |
 | '######' 6bytes | 2bytes | 2bytes | 2bytes | Vary |
 
-#### Response Message Structure
+#### 2.1.2 Response Message Structure
 
 |     Header     | Length |  Type  | Param  | Status | Body |
 | :------------: | :----: | :----: | :----: | :----: | :--: |
@@ -550,7 +550,7 @@ A Good practice is to stop dataflow when your program exits. This make sure Well
 ## 4. Welle with BLE
 Welle supports BLE data transfer, however due to the speed limitation of BLE, only a few of the command work on BLE mode.
 
-#### Welle BLE info
+#### 4.1 Welle BLE info
 
 - **BLE Device Name**
   - Welle-xxxxxxxx
@@ -562,7 +562,7 @@ Welle supports BLE data transfer, however due to the speed limitation of BLE, on
   - Characteristics UUID: FFE4
     Write '1' to this Characteristics to enable notification
 
-#### Command over BLE
+#### 4.2 Command over BLE
 The protocol is simplified in BLE data communication, Welle only responses to the following commands sent over BLE. 
 
 1. **DATAFLOW CONFIG** as output **POSITION_FILTERED** over BLE
