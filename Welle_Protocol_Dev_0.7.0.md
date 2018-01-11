@@ -10,6 +10,8 @@
          * [2.1 Structure of Message](#21-structure-of-message)
          * [2.2 Message Field Parse](#22-message-field-parse)
             * [2.2.1 Message Header](#221-message-header)
+              * [Request Message Structure](#request-message-structure)
+              * [Response Message Structure](#response-message-structure)
             * [2.2.2 Message Length](#222-message-length)
             * [2.2.3 Message Type](#223-message-type)
             * [2.2.4 Message Param](#224-message-param)
@@ -22,6 +24,8 @@
             * [2.3.5 NOTIFICATION Message](#235-notification-message)
       * [3. How to get data from Welle](#3-how-to-get-data-from-welle)
       * [4. Welle with BLE](#4-welle-with-ble)
+        * [Welle BLE info](#welle-ble-info)
+        * [Command over BLE](#command-over-ble)
       * [Recommended Tools](#recommended-tools)
       * [Contact](#contact)
 
