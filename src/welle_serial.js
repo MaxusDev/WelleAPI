@@ -44,7 +44,7 @@ welleSerial.prototype.registerPortFunctionality = function(port, openClb, closeC
     this.reconnectTask = null;
 
     port.on('data', function(data) {
-        // console.log(data);
+        console.log('Recieving: ', self.toArrayBuffer(data));
         var ret = self.decoder.decode(data);
         if (ret){
             self.msgCallback && self.msgCallback(ret);
@@ -53,17 +53,32 @@ welleSerial.prototype.registerPortFunctionality = function(port, openClb, closeC
 
     port.on('open', function(){
     	self.flush();
-    	openClb && openClb();
+    	if (openClb){
+            openClb()
+        }
+        else {
+            console.log('Port Open!');
+        }
     });
     port.on('close', function(){
     	self.connectedPort = null;
     	self.periodicConnect(openClb, closeClb, errorClb);
-    	closeClb && closeClb();
+    	if (closeClb){
+            closeClb();
+        }
+        else {
+            console.log('Port Close!');
+        }
     });
     port.on('error', function(){
     	self.connectedPort = null;
     	self.periodicConnect(openClb, closeClb, errorClb);
-    	errorClb && errorClb();
+    	if (errorClb){
+            errorClb();
+        }
+        else {
+            console.log('Port Close!');
+        }
     });
 
 }
@@ -73,7 +88,7 @@ welleSerial.prototype.periodicConnect = function(openClb, closeClb, errorClb){
 	if(!this.reconnectTask) {
 		this.reconnectTask = setInterval(function(){
 			self.connectToDevice(openClb, closeClb, errorClb);
-			// console.log("Search COM Ports");
+			console.log("Search Welle COM Ports");
 		}, 3000);
 	}
 }
@@ -93,12 +108,21 @@ welleSerial.prototype.flush = function(){
 welleSerial.prototype.write = function(data){
 	if (this.connectedPort){
         this.connectedPort.write(data, function(){
-            // console.log('writing: ', data);
+            console.log('Writing: ', data);
         })
     }
     else {
         console.log('No available port');
     }
+}
+
+welleSerial.prototype.toArrayBuffer = function(buf) {
+    // var ab = new ArrayBuffer(buf.length);
+    var view = new Uint8Array(buf.length);
+    for (var i = 0; i < buf.length; ++i) {
+        view[i] = buf[i];
+    }
+    return view;
 }
 
 module.exports =  welleSerial;

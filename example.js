@@ -24,15 +24,15 @@ welleAPI.connectAny(
 	        }
         );
 
-     //    welleAPI.configOutputData(
-     //    	['wPEAK_RAW', 'wPOSITION_RAW'], 
-     //    	function(){
-	    //     	console.log('configOutputData success');
-	    //     }, 
-	    //     function(){
-	    //     	console.log('configOutputData fail');
-	    //     }
-	    // );
+		welleAPI.configOutputData(
+	    	['wPEAK_RAW', 'wPOSITION_FILTERED'], 
+	    	function(){
+	        	console.log('configOutputData success');
+	        }, 
+	        function(){
+	        	console.log('configOutputData fail');
+	        }
+	    );
 
         welleAPI.setLedMode('wLED_1', 'wLED_FLICK_FAST',
         	function(){
@@ -46,7 +46,7 @@ welleAPI.connectAny(
         welleAPI.getDeviceInfo(
         	function(deviceInfo){
 	        	console.log('getDeviceInfo success');
-	        	// console.log(deviceInfo);
+	        	console.log(deviceInfo.message);
 	        }, 
 	        function(){
 	        	console.log('getDeviceInfo fail');
@@ -84,11 +84,11 @@ welleAPI.connectAny(
 
 welleAPI.on('data', function(data){
 	console.log('onData: ', data);
-})
+});
 
 welleAPI.on('gesture', function(gesture){
 	console.log('onGesture: ', gesture);
-})
+});
 
 // Make Sure to Stop Dataflow when Program Exit.
 process.on('SIGINT', function() {
