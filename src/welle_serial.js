@@ -44,7 +44,7 @@ welleSerial.prototype.registerPortFunctionality = function(port, openClb, closeC
     this.reconnectTask = null;
 
     port.on('data', function(data) {
-        console.log('Recieving: ', self.toArrayBuffer(data));
+        console.log('Recieving: ', self.buf2hex(data));
         var ret = self.decoder.decode(data);
         if (ret){
             self.msgCallback && self.msgCallback(ret);
@@ -106,9 +106,10 @@ welleSerial.prototype.flush = function(){
 }
 
 welleSerial.prototype.write = function(data){
+    var self = this;
 	if (this.connectedPort){
         this.connectedPort.write(data, function(){
-            console.log('Writing: ', data);
+            console.log('Writing: ', self.buf2hex(data));
         })
     }
     else {
@@ -123,6 +124,10 @@ welleSerial.prototype.toArrayBuffer = function(buf) {
         view[i] = buf[i];
     }
     return view;
+}
+
+welleSerial.prototype.buf2hex = function(buffer) {
+  return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join('');
 }
 
 module.exports =  welleSerial;
