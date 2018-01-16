@@ -169,8 +169,8 @@ enum DATAFLOW_PARA {
 	wPEAK_FILTERED = 0x0004,
 	wPOSITION_RAW = 0x0008,
 	wPOSITION_FILTERED = 0x0010,
-	wENVELOP = 0x0020,
-	wOUTPUT_USB_DEFAULT = wRAW | wPEAK_RAW | wPEAK_FILTERED | wPOSITION_RAW | wPOSITION_FILTERED | wENVELOP,
+	wENVELOPE = 0x0020,
+	wOUTPUT_USB_DEFAULT = wRAW | wPEAK_RAW | wPEAK_FILTERED | wPOSITION_RAW | wPOSITION_FILTERED | wENVELOPE,
 	wOUTPUT_BLE_DEFAULT = wPOSITION_FILTERED 
 };
 ```
@@ -292,8 +292,8 @@ wPEAK_RAW = 0x0002,
 wPEAK_FILTERED = 0x0004,
 wPOSITION_RAW = 0x0008,
 wPOSITION_FILTERED = 0x0010,
-wENVELOP = 0x0020,
-wOUTPUT_USB_DEFAULT = wRAW | wPEAK_RAW | wPEAK_FILTERED | wPOSITION_RAW | wPOSITION_FILTERED |wENVELOP,
+wENVELOPE = 0x0020,
+wOUTPUT_USB_DEFAULT = wRAW | wPEAK_RAW | wPEAK_FILTERED | wPOSITION_RAW | wPOSITION_FILTERED |wENVELOPE,
 wOUTPUT_BLE_DEFAULT = wPOSITION_FILTERED 
 ```
 
@@ -334,7 +334,7 @@ The  Body of the response message are consists of 2 bytes, the data type is int1
 
 |  Header  | Length |      Type      |                  Param                   | Status  | Body |
 | :------: | :----: | :------------: | :--------------------------------------: | :-----: | :--: |
-| '######' | 2bytes | wDATAFLOW_RESP | wRAW \|wPEAK_RAW\| wPEAK_FILTERED\|wPOSITION_FILTERED\|wPOSITION_FILTERED\|wENVELOP | wSUCCES | Vary |
+| '######' | 2bytes | wDATAFLOW_RESP | wRAW \|wPEAK_RAW\| wPEAK_FILTERED\|wPOSITION_FILTERED\|wPOSITION_FILTERED\|wENVELOPE | wSUCCESS | Vary |
 
 Data Type Format:(**Please Check Param Flag in the Following Order**)
 
@@ -344,7 +344,7 @@ Data Type Format:(**Please Check Param Flag in the Following Order**)
 | wPEAK_FILTERED     | int16  | 2                 | 2 channels' filtered echo position       |
 | wPOSITION_RAW      | int16  | 3                 | raw target position[x,y,z(currently unused)] in mm |
 | wPOSITION_FILTERED | int16  | 3                 | iltered target position[x,y,z(currently unused)] in mm |
-| wENVELOP           | int16  | 2 channels * 600  | 2 channel's signal envelop, each has 600 points. We ignore the first 200 point sof the raw signal, and compute the envelop of data points 201~ 800 |
+| wENVELOPE           | int16  | 2 channels * 600  | 2 channel's signal envelop, each has 600 points. We ignore the first 200 point sof the raw signal, and compute the envelop of data points 201~ 800 |
 | wRAW               | uint16 | 2 channels * 1360 | 2 channel's raw signal, each has 1360 points value range [0~4095] |
 
 
@@ -430,7 +430,7 @@ Before we can get any gesture notification message, a SET CMD is need to trigger
 
 |  Header  | Length |     Type      |  Param   | Status  | Body                            |
 | :------: | :----: | :-----------: | :------: | :-----: | ------------------------------- |
-| '######' |   12   | wNotification | wGESTURE | wSUCCES | wUP_DOWN \| wLED_1(current LED) |
+| '######' |   12   | wNotification | wGESTURE | wSUCCESS | wUP_DOWN \| wLED_1(current LED) |
 
 
 
@@ -442,7 +442,7 @@ Before we can get any gesture notification message, a SET CMD is need to trigger
 
 |  Header  | Length |     Type      |  Param   | Status  | Body                |
 | :------: | :----: | :-----------: | :------: | :-----: | ------------------- |
-| '######' |   10   | wNotification | wBATTERY | wSUCCES | wCHARGING \|\| 100% |
+| '######' |   10   | wNotification | wBATTERY | wSUCCESS | wCHARGING \|\| 100% |
 
 
 
@@ -475,7 +475,7 @@ You can also recalibrate the system if you think welle is not working well.
 
 |  Header  | Length |      Type      |             Param              | Status  | Body |
 | :------: | :----: | :------------: | :----------------------------: | :-----: | :--: |
-| '######' |   8    | wDATAFLOW_RESP | wCONFIG  \| wPOSITION_FILTERED | wSUCCES | None |
+| '######' |   8    | wDATAFLOW_RESP | wCONFIG  \| wPOSITION_FILTERED | wSUCCESS | None |
 
 - **Dataflow Start**
 
@@ -493,7 +493,7 @@ You can also recalibrate the system if you think welle is not working well.
 
 |  Header  | Length |      Type      |            Param             | Status  |        Body        |
 | :------: | :----: | :------------: | :--------------------------: | :-----: | :----------------: |
-| '######' |   14   | wDATAFLOW_RESP | wSTART \| wPOSITION_FILTERED | wSUCCES | coordinates[x,y,z] |
+| '######' |   14   | wDATAFLOW_RESP | wSTART \| wPOSITION_FILTERED | wSUCCESS | coordinates[x,y,z] |
 
 The response body will contain three int16 data representing the filtered coordinates (x,y,z) in mm.
 
@@ -519,7 +519,7 @@ A Good practice is to stop dataflow when your program exits. This make sure Well
 
 |  Header  | Length |      Type      | Param | Status  | Body |
 | :------: | :----: | :------------: | :---: | :-----: | :--: |
-| '######' |   8    | wDATAFLOW_RESP | wSTOP | wSUCCES | None |
+| '######' |   8    | wDATAFLOW_RESP | wSTOP | wSUCCESS | None |
 
 - **Recalibration**
 
@@ -539,7 +539,7 @@ A Good practice is to stop dataflow when your program exits. This make sure Well
 
 |  Header  | Length |  Type   | Param  | Status  | Body |
 | :------: | :----: | :-----: | :----: | :-----: | :--: |
-| '######' |   8    | wSYSCMD | wRECAL | wSUCCES | None |
+| '######' |   8    | wSYSCMD | wRECAL | wSUCCESS | None |
 
 
 
@@ -592,7 +592,7 @@ Once BLE is connected you do not need to specify  output data type, since BLE ca
 
 |  Header  | Length |      Type      |            Param             | Status  | Body |
 | :------: | :----: | :------------: | :--------------------------: | :-----: | :--: |
-| '######' | 2bytes | wDATAFLOW_RESP | wSTART \| wPOSITION_FILTERED | wSUCCES | None |
+| '######' | 2bytes | wDATAFLOW_RESP | wSTART \| wPOSITION_FILTERED | wSUCCESS | None |
 
 
 

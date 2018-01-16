@@ -92,7 +92,7 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 #### Setup
 
 - Install Node **v7.4.0** and above
-- Run `node install`  to install project dependencies specified in `package.json`
+- Run `npm install`  to install project dependencies specified in `package.json`
 - After dependencies have been installed, follow the **Quick Start** guidline to kickoff, or you can run `node example.js` to have a further understanding of the Welle Api
 
 ---
@@ -116,6 +116,8 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
    	console.log('onGesture: ', gesture);	
    });
    ```
+
+6. Make sure you **disable gesture output** before exit: `welleAPI.disableGestureOutput()`
 
 **Quick Start: Getting coordinate data flow output**
 
