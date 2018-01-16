@@ -163,7 +163,7 @@ welleDecoder.decodePackBodyMessage = function(msg){
 		msg_type: WELLE_CONST.MSG_TYPE.wRESERVED,
 		param 	: WELLE_CONST.SYSTEM_PARA.wREFRESH_RATE,
 		status 	: WELLE_CONST.STATUS.wERR,
-		data 	: [],
+		data 	: {},
 		valid 	: false,
 		rawDataBytes : []
 	}
@@ -213,6 +213,15 @@ welleDecoder.decodePackBodyMessage = function(msg){
 					}
 					decodeMsg.data[type] = temp;
 				}
+			}
+
+			if (decodeMsg.data['wRAW']){
+				var rearrangeData = new Array(decodeMsg.data['wRAW'].length);
+				for (var i = 0; i < decodeMsg.data['wRAW'].length / 2; i++){
+					rearrangeData[i] = decodeMsg.data['wRAW'][i * 2];
+					rearrangeData[i + decodeMsg.data['wRAW'].length / 2] = decodeMsg.data['wRAW'][i * 2 + 1];
+				}
+				decodeMsg.data['wRAW'] = rearrangeData;
 			}
 		}
 		var paramMsg = '';
