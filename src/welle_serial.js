@@ -1,11 +1,24 @@
 var serialport = require('serialport');
 
-function welleSerial(decoder, msgCallback){
+function welleSerial(decoder, msgCallback, debug){
 	this.decoder = decoder || null;
 	this.msgCallback = msgCallback || null;
 	this.connectedPort = null;
 	this.reconnectTask = null;
+    this.debug = true;
+    if (debug === false){
+        this.debug = false;
+    }
 };
+
+welleSerial.prototype.setDebug = function(flag){
+    if (flag === true){
+        this.debug = true;
+    }
+    else if(flag === false){
+        this.debug = false;
+    }
+}
 
 welleSerial.prototype.isConnected = function(){
 	if (this.connectedPort){
@@ -44,7 +57,9 @@ welleSerial.prototype.registerPortFunctionality = function(port, openClb, closeC
     this.reconnectTask = null;
 
     port.on('data', function(data) {
-        console.log('Recieving: ', self.buf2hex(data));
+        if (self.debug){
+            console.log('Recieving: ', self.buf2hex(data));
+        }
         var ret = self.decoder.decode(data);
         if (ret){
             self.msgCallback && self.msgCallback(ret);
@@ -109,7 +124,9 @@ welleSerial.prototype.write = function(data){
     var self = this;
 	if (this.connectedPort){
         this.connectedPort.write(data, function(){
-            console.log('Writing: ', self.buf2hex(data));
+            if (self.debug){
+                console.log('Writing: ', self.buf2hex(data));
+            }
         })
     }
     else {
@@ -118,7 +135,6 @@ welleSerial.prototype.write = function(data){
 }
 
 welleSerial.prototype.toArrayBuffer = function(buf) {
-    // var ab = new ArrayBuffer(buf.length);
     var view = new Uint8Array(buf.length);
     for (var i = 0; i < buf.length; ++i) {
         view[i] = buf[i];

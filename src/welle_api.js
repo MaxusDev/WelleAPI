@@ -13,6 +13,10 @@ function welle(){
 	this.currentCommandCallbackPair = null;
 }
 
+welle.prototype.setDebug = function(flag){
+	this.welleSerial.setDebug(flag);
+}
+
 welle.prototype.connectAny = function(openClb, closeClb, errorClb){
 	this.welleSerial.periodicConnect(openClb, closeClb, errorClb);
 }
