@@ -28,7 +28,7 @@ Under the `src` directory are the Welle api code, there are:
 | `setLedMode(led, mode, success, error)`  | Set led blick mode, **success** and **fail** callback will be invoke based on return command status. |
 | `recalibrate([success, error])`          | Recalibating Welle hardware, **success** and **fail** callback will be invoke based on return command status. A success recalibration process will set green led blink tree times. |
 | `on(event, handler)`                     | Register `event` handler, events are: `data` `gesture`. When an event is triggered, the corresponding data will be passed to event `handler` function. |
-|                                          |                                          |
+| setDebug(flag)                           | Set debug mode `true` or `false`, it will print sending and recieving data buffer to the terminal if debug is set to `true`. |
 |                                          |                                          |
 |                                          |                                          |
 
