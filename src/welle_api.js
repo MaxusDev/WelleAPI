@@ -13,6 +13,10 @@ function welle(){
 	this.currentCommandCallbackPair = null;
 }
 
+welle.prototype.setDebug = function(flag){
+	this.welleSerial.setDebug(flag);
+}
+
 welle.prototype.connectAny = function(openClb, closeClb, errorClb){
 	this.welleSerial.periodicConnect(openClb, closeClb, errorClb);
 }
@@ -243,7 +247,7 @@ welle.prototype.on = function(eventName, handler) {
       this.emitterEventListeners[eventName] = [];
     }
     this.emitterEventListeners[eventName].push(handler);
-    return this;
+    return;
 }
 
 welle.prototype.off = function(eventName, handler) {
@@ -251,13 +255,13 @@ welle.prototype.off = function(eventName, handler) {
     eventName = this.normalizeEventName(eventName);
     if (typeof handler === 'undefined') {
         this.emitterEventListeners[eventName] = [];
-        return this;
+        return;
     }
     if (!this.emitterEventListeners[eventName] || this.emitterEventListeners[eventName].length === 0) return;
     for (i = 0; i < this.emitterEventListeners[eventName].length; i++) {
         if(this.emitterEventListeners[eventName][i] === handler) this.emitterEventListeners[eventName].splice(i, 1);
     }
-    return this;
+    return;
 }
 
  welle.prototype.once = function(eventName, handler) {
@@ -268,7 +272,7 @@ welle.prototype.off = function(eventName, handler) {
       self.off(eventName, _handler);
     };
     this.on(eventName, _handler);
-    return this;
+    return;
 }
 
 module.exports = new welle();

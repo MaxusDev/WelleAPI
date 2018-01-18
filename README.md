@@ -142,7 +142,18 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 7. Make sure you **stop dataflow before you exit**: `welleAPI.stopDataflow();`
 
 
-
 To dig deeper into Welle,  please refers to welle_protocol for detail instructions.
 
 Enjoy your days with welle
+
+
+
+#### Data Visualization
+
+To quickly visualize what the data look like, we prepare a little project for you to interact with. To get started please follow the instruction beblow.
+
+- Go to **display** directory: `cd display`
+- Run node command: `node index.js`
+- Open your web browser and enter: `http://localhost:3000`
+- Choose the data you wish to play with in the setting panel. 
+

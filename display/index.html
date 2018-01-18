@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>MaxusTech</title>
+</head>
+
+<body style="margin: 0">
+    <!-- <img id="splash" src="img/splash.png"  alt="welle" style="height:100%;width:100%;z-index: 0"/> -->
+    <!-- Thrid Party Library (TPL) -->
+    <!-- TPL: Jquery -->
+    <script src="/js/lib/jquery-3.2.1.min.js"></script>
+
+    <!-- TPL: p5.js -->
+    <script src="/js/lib/p5.js"></script>
+    <script src="/js/lib/p5.dom.js"></script>
+    <script src="/js/lib/p5.sound.js"></script>
+    <!-- TPL: Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- App Core Module-->
+    <script src="/js/lib/quicksettings.js"></script>
+    <script src="/js/lib/p5.gui.js"></script>
+    <script src="/js/sketch.js"></script>
+
+    <script>
+        var socket = io();
+        socket.on("onData", function(data) {
+            // console.log(data);
+            pushData(data)
+        });
+    </script>
+</body>
+
+</html>
