@@ -24,6 +24,10 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 
   Folder that contains USB virtual comport driver for win7/8.
 
+- display
+
+  Data visualization project code
+
 - Welle_Protocol.md
 
   Documentation of the welle protocol and related data structure.
@@ -31,7 +35,7 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 - Welle_Api.md
 
 
-  Welle Api Documentation for Nodejs
+    Welle Api Documentation for Nodejs
 
 - Readme.md
 
@@ -81,25 +85,32 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 **Connect Welle via BLE**
 
 - First make sure welle is in active mode, (interactive LED is on or blinking)
+
 - Scan for BLE device with your favorite BLE tool. (LightBlue on iOS or android recommended)
+
 - The welle BLE name will be Welle-xxxxxxxx
+
 - Connect
 
----
+  ​
 
-####  
+---
 
 #### Setup
 
 - Install Node **v7.4.0** and above
+
 - Run `npm install`  to install project dependencies specified in `package.json`
+
 - After dependencies have been installed, follow the **Quick Start** guidline to kickoff, or you can run `node example.js` to have a further understanding of the Welle Api
+
+  ​
 
 ---
 
 #### Quick Start
 
-**Quick Start: Getting gesture output**
+**Getting gesture output**
 
 1. Run the following command in `node` runtime under the project parent directory
 
@@ -119,7 +130,9 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 6. Make sure you **disable gesture output** before exit: `welleAPI.disableGestureOutput()`
 
-**Quick Start: Getting coordinate data flow output**
+
+
+**Getting coordinate data flow output**
 
 1. Run the following command in `node` runtime under the project parent directory
 
@@ -144,11 +157,13 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 To dig deeper into Welle,  please refers to welle_protocol for detail instructions.
 
-Enjoy your days with welle
 
 
+---
 
 #### Data Visualization
+
+![welle_display](/Users/feizheng/Desktop/WelleDemoNodeJS/WelleAPI/image/welle_display.gif)
 
 To quickly visualize what the data look like, we prepare a little project for you to interact with. To get started please follow the instruction beblow.
 
@@ -157,3 +172,7 @@ To quickly visualize what the data look like, we prepare a little project for yo
 - Open your web browser and enter: `http://localhost:3000`
 - Choose the data you wish to play with in the setting panel. 
 
+
+
+
+Enjoy your days with welle
