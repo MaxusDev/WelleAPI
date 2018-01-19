@@ -10,6 +10,10 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 6. Many more possibilities, only limited by your imagination
 
 
+[**Click Here to GET WELLE**](https://www.indiegogo.com/projects/welle-turn-any-surface-into-a-smart-interface-gadget) and get started !
+
+![welle_display](https://github.com/MaxusDev/WelleAPI/blob/master/image/welle_display.gif)
+
 -----
 
 
@@ -157,3 +161,7 @@ To quickly visualize what the data look like, we prepare a little project for yo
 - Open your web browser and enter: `http://localhost:3000`
 - Choose the data you wish to play with in the setting panel. 
 
+
+
+
+![welle_display](https://github.com/MaxusDev/WelleAPI/blob/master/image/welle_display.gif)
