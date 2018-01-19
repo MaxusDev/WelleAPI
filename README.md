@@ -14,7 +14,7 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 
 
 
-#### Repo Outline
+### Repo Outline
 
 - src 
 
@@ -41,7 +41,7 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 
 ---
 
-#### Connectivity
+### Connectivity
 
 Welle provide USB and BLE access. Following steps guide you to correctly connet to welle
 
@@ -96,7 +96,7 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 ---
 
-#### Setup
+### Setup
 
 - Install Node **v7.4.0** and above
 
@@ -108,7 +108,7 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 ---
 
-#### Quick Start
+### Quick Start
 
 **Getting gesture output**
 
@@ -161,7 +161,7 @@ To dig deeper into Welle,  please refers to welle_protocol for detail instructio
 
 ---
 
-#### Data Visualization
+### Data Visualization
 
 ![welle_display](image/welle_display.gif)
 
