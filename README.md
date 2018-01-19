@@ -1,14 +1,18 @@
 ## Readme
 
-This repo is for those who love Welle,  want to play with Welle,  and eager to dig deeper into Welle. We are happy to present you the welle protocol and welle api in nodejs. With welle protocol, you can 
+This repo is for those who love Welle,  want to play with Welle,  and eager to dig deeper into Welle. We are happy to present you the Welle protocol and Welle api in nodejs. With Welle protocol, you can 
 
-1. Interact with welle via your favorite coding language
+1. Interact with Welle via your favorite coding language
 2. Get your hand dirty on digit signal processing
 3. Tune your own finger tracking filter
 4. Test your own handwriting recognition algorithm
 5. Build your own gesture control projects
 6. Many more possibilities, only limited by your imagination
 
+
+[**Click Here to GET Welle**](https://www.indiegogo.com/projects/Welle-turn-any-surface-into-a-smart-interface-gadget) and get started !
+
+![Welle_display](image/Welle_display.gif)
 
 -----
 
@@ -30,7 +34,7 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 
 - Welle_Protocol.md
 
-  Documentation of the welle protocol and related data structure.
+  Documentation of the Welle protocol and related data structure.
 
 - Welle_Api.md
 
@@ -43,7 +47,7 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 
 ### Connectivity
 
-Welle provide USB and BLE access. Following steps guide you to correctly connet to welle
+Welle provide USB and BLE access. Following steps guide you to correctly connet to Welle
 
 
 
@@ -51,14 +55,14 @@ Welle provide USB and BLE access. Following steps guide you to correctly connet 
 
 Welle USB port will act as virtual com port when connected to your PC or laptop.
 
-- For MacOS users, there will be a tty device indicating that welle is connected.
+- For MacOS users, there will be a tty device indicating that Welle is connected.
 
 ```shell
 $ ls /dev/tty.usb*
 /dev/tty.usbmodem1411
 ```
 
-- For linux user,there will be a tty device indicating that welle is connected. (tested on Ubuntu 16.04)
+- For linux user,there will be a tty device indicating that Welle is connected. (tested on Ubuntu 16.04)
 
 ```Shell
 $ ls /dev/ttyACM*
@@ -72,7 +76,7 @@ $ ls /dev/ttyACM*
 
 **Recommanded Serial Tools**
 
-After you find your com port, use your favorite serial tool to connect to welle.
+After you find your com port, use your favorite serial tool to connect to Welle.
 
 - For mac, `coolterm` is recommended
 - For window, `taraterm` will be a nice choice
@@ -84,12 +88,9 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 **Connect Welle via BLE**
 
-- First make sure welle is in active mode, (interactive LED is on or blinking)
-
+- First make sure Welle is in active mode, (interactive LED is on or blinking)
 - Scan for BLE device with your favorite BLE tool. (LightBlue on iOS or android recommended)
-
-- The welle BLE name will be Welle-xxxxxxxx
-
+- The Welle BLE name will be Welle-xxxxxxxx
 - Connect
 
   ​
@@ -114,21 +115,21 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 1. Run the following command in `node` runtime under the project parent directory
 
-2. Import Welle Api: `var welleAPI = require('./src/welle_api.js');`
+2. Import Welle Api: `var WelleAPI = require('./src/Welle_api.js');`
 
-3. Connect to Welle device: `welleAPI.connectAny();`
+3. Connect to Welle device: `WelleAPI.connectAny();`
 
-4. Enable gesture output: `welleAPI.enableGestureOutput();`
+4. Enable gesture output: `WelleAPI.enableGestureOutput();`
 
 5. Register gesture event handler: 
 
    ```javascript
-   welleAPI.on('gesture', function(gesture){
+   WelleAPI.on('gesture', function(gesture){
    	console.log('onGesture: ', gesture);	
    });
    ```
 
-6. Make sure you **disable gesture output** before exit: `welleAPI.disableGestureOutput()`
+6. Make sure you **disable gesture output** before exit: `WelleAPI.disableGestureOutput()`
 
 
 
@@ -136,34 +137,35 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 1. Run the following command in `node` runtime under the project parent directory
 
-2. Import Welle Api: `var welleAPI = require('./src/welle_api.js');`
+2. Import Welle Api: `var WelleAPI = require('./src/Welle_api.js');`
 
-3. Connect to Welle device: `welleAPI.connectAny();`
+3. Connect to Welle device: `WelleAPI.connectAny();`
 
-4. Config output dataflow type: `welleAPI.configOutputData(['wPOSITION_FILTERED']);`
+4. Config output dataflow type: `WelleAPI.configOutputData(['wPOSITION_FILTERED']);`
 
 5. Register dataflow event handler: 
 
    ```javascript
-   welleAPI.on('data', function(data){
+   WelleAPI.on('data', function(data){
    	console.log('onData: ', data);	
    });
    ```
 
-6. Start dataflow: `welleAPI.startDataflow();`
+6. Start dataflow: `WelleAPI.startDataflow();`
 
-7. Make sure you **stop dataflow before you exit**: `welleAPI.stopDataflow();`
+7. Make sure you **stop dataflow before you exit**: `WelleAPI.stopDataflow();`
 
 
-To dig deeper into Welle,  please refers to welle_protocol for detail instructions.
+To dig deeper into Welle,  please refers to Welle_protocol for detail instructions.
 
+
+Enjoy your days with Welle
 
 
 ---
 
 ### Data Visualization
 
-![welle_display](image/welle_display.gif)
 
 To quickly visualize what the data look like, we prepare a little project for you to interact with. To get started please follow the instruction beblow.
 
@@ -173,6 +175,5 @@ To quickly visualize what the data look like, we prepare a little project for yo
 - Choose the data you wish to play with in the setting panel. 
 
 
+![Welle_display](image/welle_display.gif)
 
-
-Enjoy your days with welle
