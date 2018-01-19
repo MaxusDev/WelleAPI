@@ -12,7 +12,7 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 
 [**Click Here to GET Welle**](https://www.indiegogo.com/projects/Welle-turn-any-surface-into-a-smart-interface-gadget) and get started !
 
-![Welle_display](image/Welle_display.gif)
+![Welle_display](image/welle_display.gif)
 
 -----
 
@@ -160,7 +160,6 @@ To dig deeper into Welle,  please refers to Welle_protocol for detail instructio
 
 
 Enjoy your days with Welle
-
 
 ---
 
