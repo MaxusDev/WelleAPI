@@ -20,20 +20,20 @@ This repo is for those who love Welle,  want to play with Welle,  and eager to d
 
   Folder that contains source code of api implementation (nodejs)
 
-- example
-
-  Folder that contains example code for API demonstration
-
 - driver
 
   Folder that contains USB virtual comport driver for win7/8.
 
-- welle_protocol.md
+- Welle_Protocol.md
 
   Documentation of the welle protocol and related data structure.
 
-- Readme.md
+- Welle_Api.md
 
+
+  Welle Api Documentation for Nodejs
+
+- Readme.md
 
 ---
 
@@ -87,14 +87,73 @@ Select the correct com port. Select the highest baudrate your serial tool suppor
 
 ---
 
-#### Getting Started 
+####  
 
-For a quick start, here is an example with nodejs.
+#### Setup
 
-```
-$ node
-```
+- Install Node **v7.4.0** and above
+- Run `npm install`  to install project dependencies specified in `package.json`
+- After dependencies have been installed, follow the **Quick Start** guidline to kickoff, or you can run `node example.js` to have a further understanding of the Welle Api
+
+---
+
+#### Quick Start
+
+**Quick Start: Getting gesture output**
+
+1. Run the following command in `node` runtime under the project parent directory
+
+2. Import Welle Api: `var welleAPI = require('./src/welle_api.js');`
+
+3. Connect to Welle device: `welleAPI.connectAny();`
+
+4. Enable gesture output: `welleAPI.enableGestureOutput();`
+
+5. Register gesture event handler: 
+
+   ```javascript
+   welleAPI.on('gesture', function(gesture){
+   	console.log('onGesture: ', gesture);	
+   });
+   ```
+
+6. Make sure you **disable gesture output** before exit: `welleAPI.disableGestureOutput()`
+
+**Quick Start: Getting coordinate data flow output**
+
+1. Run the following command in `node` runtime under the project parent directory
+
+2. Import Welle Api: `var welleAPI = require('./src/welle_api.js');`
+
+3. Connect to Welle device: `welleAPI.connectAny();`
+
+4. Config output dataflow type: `welleAPI.configOutputData(['wPOSITION_FILTERED']);`
+
+5. Register dataflow event handler: 
+
+   ```javascript
+   welleAPI.on('data', function(data){
+   	console.log('onData: ', data);	
+   });
+   ```
+
+6. Start dataflow: `welleAPI.startDataflow();`
+
+7. Make sure you **stop dataflow before you exit**: `welleAPI.stopDataflow();`
+
 
 To dig deeper into Welle,  please refers to welle_protocol for detail instructions.
 
 Enjoy your days with welle
+
+
+
+#### Data Visualization
+
+To quickly visualize what the data look like, we prepare a little project for you to interact with. To get started please follow the instruction beblow.
+
+- Go to **display** directory: `cd display`
+- Run node command: `node index.js`
+- Open your web browser and enter: `http://localhost:3000`
+- Choose the data you wish to play with in the setting panel. 
+

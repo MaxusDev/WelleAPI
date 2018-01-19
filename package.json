@@ -1,0 +1,19 @@
+{
+  "name": "welle_api",
+  "version": "1.0.0",
+  "description": "welle api project for all developers",
+  "main": "index.js",
+  "dependencies": {
+    "serialport": "^4.0.4",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "socket.io": "^1.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maxustech Inc Developer",
+  "license": "ISC"
+}
