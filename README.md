@@ -163,7 +163,7 @@ To dig deeper into Welle,  please refers to welle_protocol for detail instructio
 
 #### Data Visualization
 
-![welle_display](/Users/feizheng/Desktop/WelleDemoNodeJS/WelleAPI/image/welle_display.gif)
+![welle_display](image/welle_display.gif)
 
 To quickly visualize what the data look like, we prepare a little project for you to interact with. To get started please follow the instruction beblow.
 
