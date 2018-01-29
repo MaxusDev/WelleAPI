@@ -68,13 +68,14 @@ welleDecoder.decode = function(data){
         	continue;
         }
 
-        if(this.decodeState == DECODERSTATE.dataflow){
-        	var ret = this.decodeDataflow(dataByte);
-        	if(ret != undefined){
-        		continue;
-        	}
-        }
-        else if(this.decodeState == DECODERSTATE.dataLength){
+        // if(this.decodeState == DECODERSTATE.dataflow){
+        // 	var ret = this.decodeDataflow(dataByte);
+        // 	if(ret != undefined){
+        // 		continue;
+        // 	}
+        // }
+        
+        if(this.decodeState == DECODERSTATE.dataLength){
             this.decodeDataLength(dataByte);
         }
         else if(this.decodeState == DECODERSTATE.message){
@@ -108,10 +109,10 @@ welleDecoder.decodeHeader = function(dataByte){
     	this.headerCount = 0;
     }
 
-    if(this.previousDataByte == 33 && dataByte == 33){
-    	decodeState = DECODERSTATE.dataflow;
-    	this.headerCount = 0;
-    }
+    // if(this.previousDataByte == 33 && dataByte == 33){
+    // 	decodeState = DECODERSTATE.dataflow;
+    // 	this.headerCount = 0;
+    // }
 
     this.previousDataByte = dataByte;
     return decodeState;
