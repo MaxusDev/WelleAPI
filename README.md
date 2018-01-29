@@ -1,5 +1,7 @@
 ## Readme
 
+Welle Android app is offially out! You can download it from [here](http://p0jjxwlzf.bkt.clouddn.com/android/1516980436welle_signed_v1.0.1.apk)!
+
 This repo is for those who love Welle,  want to play with Welle,  and eager to dig deeper into Welle. We are happy to present you the Welle protocol and Welle api in nodejs. With Welle protocol, you can 
 
 1. Interact with Welle via your favorite coding language

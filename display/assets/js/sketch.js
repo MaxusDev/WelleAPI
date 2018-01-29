@@ -21,7 +21,7 @@
 
 // gui
 var visible = true;
-var ratio = 2;
+var shrink_ratio = 2;
 var gui;
 var canvas;
 var paths_raw = [];
@@ -45,13 +45,13 @@ var peak_filtered 			= false;
 var peak_raw				= false;
 
 function setup() {
-  canvas = createCanvas(window.innerWidth/ratio, window.innerHeight/ratio);
+  canvas = createCanvas(window.innerWidth/shrink_ratio, window.innerHeight/shrink_ratio);
   canvas.position(0, 0);
   canvas.style('width', '100%');
   canvas.style('height', '100%');
 
   // Create Layout GUI
-  gui = createGui('Maxutech', width * ratio - 220, 20);
+  gui = createGui('Maxutech', width * shrink_ratio - 220, 20);
   gui.addGlobals('ch1_raw', 'ch2_raw', 'ch1_envelope', 'ch2_envelope', 'peak_raw', 'peak_filtered', 'position_raw', 'position_filtered');
 
   gui.addButton('Recalibrate', function(){
@@ -69,7 +69,7 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(window.innerWidth/ratio, window.innerHeight/ratio);
+  resizeCanvas(window.innerWidth/shrink_ratio, window.innerHeight/shrink_ratio);
   canvas.position(0, 0);
   canvas.style('width', '100%');
   canvas.style('height', '100%');
@@ -147,7 +147,7 @@ app.drawPosition = function(translateX, translateY, width, height) {
 app.drawEnvelope = function(plot, plotX, plotY, color, width, height, text, text_color, drawFlag, peakRawFlag, peakFilteredFlag, peakRaw, peakFiltered) {
     var plotWidth = width;
     var plotHeight = height;
-    ratio = (plot.length) / plotWidth;
+    var ratio = (plot.length) / plotWidth;
     var magnitude = 4000;
     var shift = plotX;
 
