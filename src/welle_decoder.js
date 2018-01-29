@@ -54,6 +54,7 @@ var welleDecoder = {
 };
 
 welleDecoder.resetBuffer = function(){
+	this.byteCount = 0;
 	this.bufferData = [];
 };
 
@@ -74,7 +75,7 @@ welleDecoder.decode = function(data){
         // 		continue;
         // 	}
         // }
-        
+
         if(this.decodeState == DECODERSTATE.dataLength){
             this.decodeDataLength(dataByte);
         }
