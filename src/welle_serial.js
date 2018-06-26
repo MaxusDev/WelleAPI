@@ -57,8 +57,11 @@ welleSerial.prototype.connectToDevice = function(openClb, closeClb, errorClb){
             var port = ports[i];
             var portManufacturer = port.manufacturer;
             var portName = port.comName;
+            var vendorId = port.vendorId;
+            var productId = port.productId;
             // console.log(JSON.stringify(port))
-            if (portManufacturer && portManufacturer.indexOf("STMicroelectronics") >= 0 ) {
+            if (portManufacturer && (portManufacturer.indexOf("STMicroelectronics") >= 0 
+                || vendorId.indexOf('0483') >= 0 && productId.indexOf('5740') >= 0)) {
                 var myPort = new serialport(portName, {
                     baudrate: 115200,
                     buffersize: 4096 * 10
